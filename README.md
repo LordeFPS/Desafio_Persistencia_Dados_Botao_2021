@@ -11,4 +11,4 @@ Execute  a classe Cadastro no qual a mesma é a main.
 
 O código está feito no método projeto dentro de Cadastro.
 
-Do projeto faço ligação com todo o desafio, desde Entidades até Menus.
+Do projeto faço ligação com todo o desafio proposto, desde Entidades até Menus.
