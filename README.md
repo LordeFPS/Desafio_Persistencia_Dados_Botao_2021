@@ -1,4 +1,4 @@
-# Desafio_Persistencia_Dados_Botao_2021(EDITAR CORRETAMENTE)
+# Desafio_Persistencia_Dados_Botao_2021
 O sistema precisa permitir que:
 
 - O cadastro de pessoas, com nome e sobrenome;
@@ -7,4 +7,8 @@ O sistema precisa permitir que:
 
 - O cadastro dos espaços de café pelo nome;
 
+Execute  a classe Cadastro no qual a mesma é a main.
 
+O código está feito no método projeto dentro de Cadastro.
+
+Do projeto faço ligação com todo o desafio proposto, desde Entidades até Menus.
