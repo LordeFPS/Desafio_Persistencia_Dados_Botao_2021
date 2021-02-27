@@ -7,7 +7,7 @@ O sistema precisa permitir que:
 
 - O cadastro dos espaços de café pelo nome;
 
-Execute  a calsse Cadastro no qual a mesma é a main.
+Execute  a classe Cadastro no qual a mesma é a main.
 
 O código está feito no método projeto dentro de Cadastro.
 
