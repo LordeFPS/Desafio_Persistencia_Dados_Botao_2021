@@ -18,6 +18,15 @@ public class Sala extends Pessoa{
     public Sala() {
     }
 
+    public Sala(String nome, String sobrenome) {
+        super(nome, sobrenome);
+    }
+
+    public Sala(String sala, int lotacao) {
+        this.sala = sala;
+        this.lotacao = lotacao;
+    }
+    
     public Sala(String nome, String sobrenome, String sala, int lotacao) {
         super(nome, sobrenome);
         this.sala = sala;

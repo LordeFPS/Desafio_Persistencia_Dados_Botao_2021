@@ -20,6 +20,7 @@ public class Menus {
         System.out.println("********************");
         System.out.println("** 1 - Cadastrar  **");
         System.out.println("** 2 - Consulta   **");
+        System.out.println("** 3 - Sair       **");
         System.out.println("********************");
         System.out.print("Escolha uma opção: ");
         return leitor.nextInt();
@@ -28,8 +29,9 @@ public class Menus {
     public static int menuCadastrar(){
         System.out.println("****** Cadastar ******");
         System.out.println("** 1 - Pessoa       **");
-        System.out.println("** 2 - Espaço Café  **");
-        System.out.println("** 3 - Salas        **");
+        //System.out.println("** 2 - Salas        **");
+        //System.out.println("** 3 - Espaço Café  **");
+        System.out.println("** 4 - Voltar       **");
         System.out.println("**********************");
         System.out.print("Escolha uma opção: ");
         return leitor.nextInt();
@@ -38,8 +40,9 @@ public class Menus {
     public static int menuConsulta(){
         System.out.println("****** Consulta ******");
         System.out.println("** 1 - Pessoa       **");
-        System.out.println("** 2 - Espaço Café  **");
-        System.out.println("** 3 - Salas        **");
+        System.out.println("** 2 - Salas        **");
+        System.out.println("** 3 - Espaço Café  **");
+        System.out.println("** 4 - Voltar       **");
         System.out.println("**********************");
         System.out.print("Escolha uma opção: ");
         return leitor.nextInt();
