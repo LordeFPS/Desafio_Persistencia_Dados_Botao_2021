@@ -43,10 +43,83 @@ public class Cadastro {
         boolean constante = true;
         
         while (constante) {            
+            int opcao = menuGeral();
             
+            if (opcao == 1){
+                boolean constanteCadastro = true;
+               
+                while (constanteCadastro) {   
+                    int cadastrar = menuCadastrar();
+                    String nome;
+                    String sobrenome;
+                    String sala;
+                    int lotacao;
+                    String cafe;
+                    
+                    switch (cadastrar) {
+                        case 1:
+                            System.out.print("Digite seu nome: ");
+                            nome = leitor.next();
+                            System.out.print("Digite seu sobrenome: ");
+                            sobrenome = leitor.next();
+                            System.out.print("Nome da sala sem espaço: ");
+                            sala = leitor.next();
+                            System.out.print("Lotação maxima: ");
+                            lotacao = leitor.nextInt();
+                            System.out.print("Nome da sala do Café: ");
+                            cafe = leitor.next();
+                            cafes.inserirDados(cafe, nome, sobrenome, sala, lotacao);
+                            break;
+                        case 2:
+                            
+                            
+                            break;
+                        case 3:
+                            
+                            
+                            break;
+                        case 4:
+                            System.out.println("Saiu do sistema.");
+                            break;
+                        default:
+                            System.out.println("Opção inválida!!");
+                            continue;
+                        
+                    }
+                    break;
+                }
+                
+            } else if (opcao == 2){
+                int consultar = menuConsulta();
+                boolean constanteConsulta = true;
+               
+                while (constanteConsulta) {                    
+                    switch (consultar) {
+                        case 1:
+                            
+                            break;
+                        case 2:
+                            
+                            break;
+                        case 3:
+                            cafes.listarDados();
+                            break;
+                        case 4:
+                            System.out.println("Saiu do sistema.");
+                            break;
+                        default:
+                            System.out.println("Opção inválida!!");
+                            continue;
+                    }
+                    break;
+                }
+            } else if (opcao == 3){
+                System.out.println("Saiu do sistema.");
+                break;
+            } else {
+                System.out.println("Opção inválida.");
+                continue;
+            }
         }
-        
-        
     }
-
 }
