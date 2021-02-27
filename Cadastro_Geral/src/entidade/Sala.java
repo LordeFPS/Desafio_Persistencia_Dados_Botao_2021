@@ -5,7 +5,6 @@
  */
 package entidade;
 
-import controller.ListaPessoa;
 import java.util.LinkedList;
 
 /**

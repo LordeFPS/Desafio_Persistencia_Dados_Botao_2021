@@ -10,12 +10,10 @@ import controller.ListaCafe;
 import controller.ListaPessoa;
 import controller.ListaSala;
 import entidade.Pessoa;
-import entidade.Sala;
 import java.util.Scanner;
 import static menu.Menus.menuCadastrar;
 import static menu.Menus.menuConsulta;
 import static menu.Menus.menuGeral;
-import java.util.LinkedList;
 
 /**
  *
