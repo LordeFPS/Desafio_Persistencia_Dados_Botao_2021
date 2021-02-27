@@ -9,18 +9,24 @@ import java.util.Objects;
 
 /**
  *
- * @author Lorde
+ * @author Lord
  */
 public class Pessoa {
     private String nome;
     private String sobrenome;
-    private String estapa1 = "Inscrição em andanmento.";
-    private String estapa2 = "Inscrição em andanmento.";
-    private String cafe = "Inscrição em andanmento.";
+    private String etapa1 = "\nSala Etapa 1: Inscrição em andamento. \n";
+    private String etapa2 = "Sala Etapa 2: Inscrição em andamento. \n";
+    private String cafe = "Sala de Cafe: Inscrição em andamento. \n";
 
     public Pessoa() {
     }
-
+    
+    public Pessoa(String etapa1, String etapa2, String cafe) {
+        this.etapa1 = etapa1;
+        this.etapa2 = etapa2;
+        this.cafe = cafe;
+    }
+    
     public Pessoa(String nome, String sobrenome) {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -43,19 +49,19 @@ public class Pessoa {
     }
 
     public String getEstapa1() {
-        return estapa1;
+        return etapa1;
     }
 
-    public void setEstapa1(String estapa1) {
-        this.estapa1 = estapa1;
+    public void setEstapa1(String etapa1) {
+        this.etapa1 = etapa1;
     }
 
     public String getEstapa2() {
-        return estapa2;
+        return etapa2;
     }
 
-    public void setEstapa2(String estapa2) {
-        this.estapa2 = estapa2;
+    public void setEstapa2(String etapa2) {
+        this.etapa2 = etapa2;
     }
 
     public String getCafe() {
