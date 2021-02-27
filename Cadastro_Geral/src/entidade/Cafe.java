@@ -15,12 +15,16 @@ import java.util.LinkedList;
  */
 public class Cafe{
     private String cafe;
-    public ListaPessoa participante;
+    public LinkedList<Pessoa> participantes = new LinkedList();
 
     public Cafe() {
     
     }
 
+    public void addParticipante(Pessoa pessoa) {
+        this.participantes.add(pessoa);
+    }
+    
     public Cafe(String cafe) {
         this.cafe = cafe;
     }

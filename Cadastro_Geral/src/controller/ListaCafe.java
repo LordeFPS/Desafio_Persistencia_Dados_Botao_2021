@@ -6,6 +6,7 @@
 package controller;
 
 import entidade.Cafe;
+import entidade.Pessoa;
 import java.util.LinkedList;
 
 /**
@@ -22,11 +23,31 @@ public class ListaCafe {
         for (Cafe obj : cafes){
             
             if (cafe.contains(obj.getCafe())){
-                System.out.println(obj);
-                obj.participante.listarTodosPessoa();
-                return;
+               System.out.println("Cafe: "+obj.getCafe());
+               listarParticipantes(obj);
             }
         }
+    }
+    public void inserirPessoaCafe(int indice,Pessoa pessoa){
+        cafes.get(indice).addParticipante(pessoa);
+    }
+    
+    public void listarParticipantes(Cafe cafe){
+        int contador = 1;
+        System.out.println("Total de Participantes no cafe: "+cafe.participantes.size());
+        for (Pessoa participante: cafe.participantes){
+            String nomeCompleto = participante.getNome() + " " + participante.getSobrenome();
+            System.out.print(contador + " - "+ nomeCompleto + "\n");
+            contador++;
+        }
+    }
+    
+    public int numeroCafes(){
+        return cafes.size();
+    }
+    
+    public Cafe posicaoCafe(int  posicao){
+        return cafes.get(posicao);
     }
     
     public void listarTodosCafe(){

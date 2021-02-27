@@ -9,11 +9,13 @@ package cadastro;
 import controller.ListaCafe;
 import controller.ListaPessoa;
 import controller.ListaSala;
+import entidade.Pessoa;
+import entidade.Sala;
 import java.util.Scanner;
 import static menu.Menus.menuCadastrar;
 import static menu.Menus.menuConsulta;
 import static menu.Menus.menuGeral;
-
+import java.util.LinkedList;
 
 /**
  *
@@ -40,16 +42,34 @@ public class Cadastro {
     }
     // Projeto onde executa o Sistema de cadastro e consulta
     public static void projeto() {
+        // Cadastra as pessoas previamente para fazer os testes.
+        pessoas.inserirPessoa("joao", "aa");
+        pessoas.inserirPessoa("jorge", "aa");
+        pessoas.inserirPessoa("edian", "aa");
+        pessoas.inserirPessoa("lorde", "aa");
+        pessoas.inserirPessoa("gabriel", "aa");
+        pessoas.inserirPessoa("lucas", "aa");
+        pessoas.inserirPessoa("junin", "aa");
+        
+        // Cadastra as salas previamente para fazer os testes.
+        salas.inserirSala("Sala1", 5);
+        salas.inserirSala("Sala2", 5);
+        salas.inserirSala("Sala3", 5);
+        
+        // Cadastra os espaços de cafe previamente para fazer os testes.
+        cafes.inserirCafe("CafeA");
+        cafes.inserirCafe("CafeB");
+        
         boolean constante = true;
         boolean isOpen = true;
-        
+        //Inicio do código entrando nos menus
         while (constante) {            
             int opcao = menuGeral();
                
             if (opcao == 1){
                 if (isOpen  == true){
                     boolean constanteCadastro = true;
-
+                    // Acesse o menu de Cadastro
                     while (constanteCadastro) {   
                         int cadastrar = menuCadastrar();
 
@@ -78,11 +98,11 @@ public class Cadastro {
                                 continue;
                            }
                         }
-
                     }else {
                         System.out.println("Cadastro encerrado.");
                     }
-                
+               // Faz a finalização dos cadastros e faz a distribuição das pessoas
+               // nas salas e cafés
                }else if (opcao == 2){
                 if (isOpen == false){   
                     System.out.println("Ja encerrou as incricoes anteriormente.");
@@ -91,23 +111,44 @@ public class Cadastro {
                     System.out.println("Cadastros encerrados. Fichas de inscricao"
                                                     + "atualizadas ccom sucesso!");
                     //TODO código de distribuição de salas.
-                    int totalpessoas  = pessoas.totalPessoas();
+                    int totalpessoas  = pessoas.tamanhoPessoas();
                     int numeroSalas = salas.numeroSala();
-                    int divisaoDePessoas;
+                    int numeroCafes = cafes.numeroCafes();
+                    int pessoasPorSala;
                     int restoDivisaoPessoas;
                     
-                    divisaoDePessoas = totalpessoas / numeroSalas;
+                    pessoasPorSala = totalpessoas / numeroSalas;
                     restoDivisaoPessoas = totalpessoas % numeroSalas;
                     
-                    System.out.println(totalpessoas);
-                    System.out.println(numeroSalas);
-                    System.out.println("Divisao: " + divisaoDePessoas);
-                    System.out.println("Resto: " + restoDivisaoPessoas);
-                    
-                    for (int i  = 0; i < restoDivisaoPessoas; i++){
+                    int contadorPessoas = 0;
+                    int metadeSala = totalpessoas / 2;
+                    for (Pessoa pessoaAtual: pessoas.getListaPessoas()){
+               
+                        int salaAtual = contadorPessoas % numeroSalas; 
+                        int cafeAtual = contadorPessoas % numeroCafes; 
+                        salas.inserirSalaEtapa1(salaAtual,pessoaAtual);
+                        String nomeSala = salas.posicaoSala(salaAtual).getSala();
+                        pessoas.getListaPessoas().get(contadorPessoas).setEstapa1(nomeSala);
+                        String nomeSala2 = salas.posicaoSala(salaAtual).getSala();
+                        String nomeCafe = cafes.posicaoCafe(cafeAtual).getCafe();
                         
+                        if (contadorPessoas >= metadeSala){
+                            int salaDireita = (salaAtual + 1) % numeroSalas;
+                            salas.inserirSalaEtapa2(salaDireita,pessoaAtual);
+                            nomeSala2 = salas.posicaoSala(salaDireita).getSala();
+                            pessoaAtual.setEstapa2(nomeSala2);
+                            
+                        } 
+                        else{
+                            salas.inserirSalaEtapa2(salaAtual,pessoaAtual);
+                            pessoaAtual.setEstapa2(nomeSala2);
+                        }
+                        cafes.inserirPessoaCafe(cafeAtual, pessoaAtual);
+                        pessoaAtual.setCafe(nomeCafe);
+                        contadorPessoas++;
                     }
                 }
+            // Acessa o menu de Consulta
             }else if (opcao == 3){
                 boolean constanteConsulta = true;
                
@@ -125,11 +166,9 @@ public class Cadastro {
                         salas.consultaSala(sala);
                         
                     }else if(consultar == 3){
-                        //System.out.println("ListaCafe " + cafes.cafes.get(0).getCafe());
                         System.out.print("Procurar por café: ");
                         String cafe = leitor.next();
                         cafes.consultaCafe(cafe);
-                        //cafes.listarTodosCafe();
                     }else if(consultar == 4){
                         System.out.println("Desenvolver ainda.");
                     }else if(consultar == 5){
