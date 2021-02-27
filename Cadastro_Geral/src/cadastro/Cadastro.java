@@ -5,13 +5,10 @@
  */
 package cadastro;
 
+
 import controller.ListaCafe;
-import entidade.Cafe;
-import entidade.Pessoa;
-import entidade.Sala;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import controller.ListaPessoa;
+import controller.ListaSala;
 import java.util.Scanner;
 import static menu.Menus.menuCadastrar;
 import static menu.Menus.menuConsulta;
@@ -23,8 +20,11 @@ import static menu.Menus.menuGeral;
  * @author Lorde
  */
 public class Cadastro {
-   static Scanner leitor = new Scanner(System.in);
-   static ListaCafe cafes = new ListaCafe();
+    static Scanner leitor = new Scanner(System.in);
+    static ListaPessoa pessoas = new  ListaPessoa();
+    static ListaCafe cafes = new ListaCafe();
+    static ListaSala salas = new ListaSala();
+    
    
     public static void main(String[] args) {
         //teste();
@@ -41,79 +41,106 @@ public class Cadastro {
     // Projeto onde executa o Sistema de cadastro e consulta
     public static void projeto() {
         boolean constante = true;
+        boolean isOpen = true;
         
         while (constante) {            
             int opcao = menuGeral();
-            
-            if (opcao == 1){
-                boolean constanteCadastro = true;
                
-                while (constanteCadastro) {   
-                    int cadastrar = menuCadastrar();
-                    String nome;
-                    String sobrenome;
-                    String sala;
-                    int lotacao;
-                    String cafe;
+            if (opcao == 1){
+                if (isOpen  == true){
+                    boolean constanteCadastro = true;
+
+                    while (constanteCadastro) {   
+                        int cadastrar = menuCadastrar();
+
+                            if(cadastrar == 1) {
+                                System.out.print("Digite seu nome: ");
+                                String nome = leitor.next();
+                                System.out.print("Digite seu sobrenome: ");
+                                String sobrenome = leitor.next();
+                                pessoas.inserirPessoa(nome, sobrenome);
+                                
+                            }else if(cadastrar == 2){
+                                System.out.print("Nome da sala sem espaço: ");
+                                String sala = leitor.next();
+                                System.out.print("Lotação maxima: ");
+                                int lotacao = leitor.nextInt();
+                                salas.inserirSala(sala, lotacao);
+                            }else if(cadastrar == 3){
+                                System.out.print("Nome da sala do Café: ");
+                                String cafe = leitor.next();
+                                cafes.inserirCafe(cafe);
+                            }else if(cadastrar == 4){
+                                   System.out.println("Voltou para o menu principal.");
+                                   break;
+                            }else{
+                                System.out.println("Opção inválida!!");
+                                continue;
+                           }
+                        }
+
+                    }else {
+                        System.out.println("Cadastro encerrado.");
+                    }
+                
+               }else if (opcao == 2){
+                if (isOpen == false){   
+                    System.out.println("Ja encerrou as incricoes anteriormente.");
+                }else{
+                    isOpen = false; 
+                    System.out.println("Cadastros encerrados. Fichas de inscricao"
+                                                    + "atualizadas ccom sucesso!");
+                    //TODO código de distribuição de salas.
+                    int totalpessoas  = pessoas.totalPessoas();
+                    int numeroSalas = salas.numeroSala();
+                    int divisaoDePessoas;
+                    int restoDivisaoPessoas;
                     
-                    switch (cadastrar) {
-                        case 1:
-                            System.out.print("Digite seu nome: ");
-                            nome = leitor.next();
-                            System.out.print("Digite seu sobrenome: ");
-                            sobrenome = leitor.next();
-                            System.out.print("Nome da sala sem espaço: ");
-                            sala = leitor.next();
-                            System.out.print("Lotação maxima: ");
-                            lotacao = leitor.nextInt();
-                            System.out.print("Nome da sala do Café: ");
-                            cafe = leitor.next();
-                            cafes.inserirDados(cafe, nome, sobrenome, sala, lotacao);
-                            break;
-                        case 2:
-                            
-                            
-                            break;
-                        case 3:
-                            
-                            
-                            break;
-                        case 4:
-                            System.out.println("Saiu do sistema.");
-                            break;
-                        default:
-                            System.out.println("Opção inválida!!");
-                            continue;
+                    divisaoDePessoas = totalpessoas / numeroSalas;
+                    restoDivisaoPessoas = totalpessoas % numeroSalas;
+                    
+                    System.out.println(totalpessoas);
+                    System.out.println(numeroSalas);
+                    System.out.println("Divisao: " + divisaoDePessoas);
+                    System.out.println("Resto: " + restoDivisaoPessoas);
+                    
+                    for (int i  = 0; i < restoDivisaoPessoas; i++){
                         
                     }
-                    break;
                 }
-                
-            } else if (opcao == 2){
-                int consultar = menuConsulta();
+            }else if (opcao == 3){
                 boolean constanteConsulta = true;
                
-                while (constanteConsulta) {                    
-                    switch (consultar) {
-                        case 1:
-                            
-                            break;
-                        case 2:
-                            
-                            break;
-                        case 3:
-                            cafes.listarDados();
-                            break;
-                        case 4:
-                            System.out.println("Saiu do sistema.");
-                            break;
-                        default:
-                            System.out.println("Opção inválida!!");
-                            continue;
+                while (constanteConsulta) {  
+                    int consultar = menuConsulta();
+                    
+                    if(consultar == 1) {
+                        System.out.print("Procurar por nome: ");
+                        String nome = leitor.next();
+                        pessoas.consultaNome(nome);
+                        
+                    }else if(consultar == 2){
+                        System.out.print("Procurar por sala: ");
+                        String sala = leitor.next();
+                        salas.consultaSala(sala);
+                        
+                    }else if(consultar == 3){
+                        //System.out.println("ListaCafe " + cafes.cafes.get(0).getCafe());
+                        System.out.print("Procurar por café: ");
+                        String cafe = leitor.next();
+                        cafes.consultaCafe(cafe);
+                        //cafes.listarTodosCafe();
+                    }else if(consultar == 4){
+                        System.out.println("Desenvolver ainda.");
+                    }else if(consultar == 5){
+                        System.out.println("Voltou para o menu principal.");
+                        break;
+                    }else{
+                        System.out.println("Opção inválida!!");
+                        continue;
                     }
-                    break;
                 }
-            } else if (opcao == 3){
+            }  else if (opcao == 4){
                 System.out.println("Saiu do sistema.");
                 break;
             } else {

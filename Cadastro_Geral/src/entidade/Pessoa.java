@@ -14,15 +14,18 @@ import java.util.Objects;
 public class Pessoa {
     private String nome;
     private String sobrenome;
+    private String estapa1 = "Inscrição em andanmento.";
+    private String estapa2 = "Inscrição em andanmento.";
+    private String cafe = "Inscrição em andanmento.";
 
     public Pessoa() {
     }
-    
+
     public Pessoa(String nome, String sobrenome) {
         this.nome = nome;
         this.sobrenome = sobrenome;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -39,16 +42,34 @@ public class Pessoa {
         this.sobrenome = sobrenome;
     }
 
-    public void listar(){
-        System.out.println(nome + " " + sobrenome);
+    public String getEstapa1() {
+        return estapa1;
     }
+
+    public void setEstapa1(String estapa1) {
+        this.estapa1 = estapa1;
+    }
+
+    public String getEstapa2() {
+        return estapa2;
+    }
+
+    public void setEstapa2(String estapa2) {
+        this.estapa2 = estapa2;
+    }
+
+    public String getCafe() {
+        return cafe;
+    }
+
+    public void setCafe(String cafe) {
+        this.cafe = cafe;
+    }
+    
 
     @Override
     public String toString() {
         return nome + " " + sobrenome + ", ";
     }
-
-    
-    
-    
+   
 }

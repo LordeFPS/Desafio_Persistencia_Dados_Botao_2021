@@ -5,34 +5,25 @@
  */
 package entidade;
 
-import java.util.Timer;
+import controller.ListaPessoa;
+
 
 /**
  *
  * @author Lorde
  */
-public class Sala extends Pessoa{
+public class Sala{
     private String sala;
     private int lotacao;
+    public ListaPessoa participante1;
+    public ListaPessoa participante2;
 
-    public Sala() {
-    }
-
-    public Sala(String nome, String sobrenome) {
-        super(nome, sobrenome);
-    }
-
+    
     public Sala(String sala, int lotacao) {
         this.sala = sala;
         this.lotacao = lotacao;
     }
     
-    public Sala(String nome, String sobrenome, String sala, int lotacao) {
-        super(nome, sobrenome);
-        this.sala = sala;
-        this.lotacao = lotacao;
-    }
-
     public String getSala() {
         return sala;
     }
@@ -50,14 +41,13 @@ public class Sala extends Pessoa{
     }
     
     public void listar(){
-        super.listar();
         System.out.println(sala);
         System.out.println("Lotação: " + lotacao);
     }
 
     @Override
     public String toString() {
-        return super.toString() + sala + ", Lotação: " + lotacao + ", ";
+        return sala + ", Lotação: " + lotacao + ", ";
     }
 
    

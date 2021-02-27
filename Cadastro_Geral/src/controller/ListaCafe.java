@@ -6,36 +6,33 @@
 package controller;
 
 import entidade.Cafe;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
  * @author Lorde
  */
-public class ListaCafe extends Cafe{
-    ArrayList<Cafe> cafes = new ArrayList();
+public class ListaCafe {
+    static LinkedList<Cafe> cafes = new LinkedList();
     
-    
-    public void inserirNomeSobrenome(String nome, String sobrenome){
-        cafes.set(0, new  Cafe(nome, sobrenome));
+    public void inserirCafe(String cafe){
+        cafes.add(new Cafe(cafe));
+    }
+    public void consultaCafe(String cafe){
+        for (Cafe obj : cafes){
+            
+            if (cafe.contains(obj.getCafe())){
+                System.out.println(obj);
+                obj.participante.listarTodosPessoa();
+                return;
+            }
+        }
     }
     
-    public void inserirSala(String  sala, int lotacao){
-        cafes.set(0, new  Cafe(sala, lotacao));
-    }
-    
-    public void inserirCafe(String  cafe){
-        cafes.set(0, new Cafe(cafe));
-    }
-    
-    public void inserirDados(String cafe, String nome, String sobrenome, String sala, int  lotacao) {
-        cafes.add(new Cafe(cafe, nome, sobrenome, sala, lotacao));
-    }
-    
-    public void listarDados() {
-        for (int i = 0; i < cafes.size(); i++){
-            System.out.println(  cafes.get(i));             
-            //System.out.println(" ");
+    public void listarTodosCafe(){
+        for (Cafe obj : cafes){
+            System.out.println(obj);
+            
         }
     }
 }
