@@ -16,6 +16,18 @@ public class Cafe extends Sala{
     public Cafe() {
     }
 
+    public Cafe(String nome, String sobrenome) {
+        super(nome, sobrenome);
+    }
+
+    public Cafe(String sala, int lotacao) {
+        super(sala, lotacao);
+    }
+    
+    public Cafe(String cafe) {
+        this.cafe = cafe;
+    }
+    
     public Cafe(String cafe, String nome, String sobrenome, String sala, int lotacao) {
         super(nome, sobrenome, sala, lotacao);
         this.cafe = cafe;
