@@ -6,7 +6,7 @@
 package entidade;
 
 import controller.ListaPessoa;
-
+import java.util.LinkedList;
 
 /**
  *
@@ -15,9 +15,20 @@ import controller.ListaPessoa;
 public class Sala{
     private String sala;
     private int lotacao;
-    public ListaPessoa participante1;
-    public ListaPessoa participante2;
+    public LinkedList<Pessoa> participantes1 = new LinkedList();
+    public LinkedList<Pessoa> participantes2 = new LinkedList();
 
+    public Sala() {
+    }
+   
+    
+    public void adicionarPessoaE1(Pessoa pessoa){
+        this.participantes1.addLast(pessoa);
+    }
+    
+    public void adicionarPessoaE2(Pessoa pessoa){
+        this.participantes2.add(pessoa);
+    }
     
     public Sala(String sala, int lotacao) {
         this.sala = sala;
@@ -47,7 +58,7 @@ public class Sala{
 
     @Override
     public String toString() {
-        return sala + ", Lotação: " + lotacao + ", ";
+        return sala + ", Lotação: " + lotacao;
     }
 
    
